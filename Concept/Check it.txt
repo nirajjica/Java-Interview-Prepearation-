@@ -1,0 +1,29 @@
+NoClassDefFoundError
+	NoClassDefFoundError occurs when class was present during compile time and program was compiled and linked successfully but class was not present during runtime.
+	It is error which is derived from LinkageError
+	NoClassFoundError is the result of implicit loading of class because of calling a method or accessing a variable from that class
+ Java program to illustrate
+// NoClassDefFoundError
+class GeeksForGeeks 
+{
+    void greeting()
+    {
+        System.out.println("hello!");
+    }
+}
+  
+class G4G {
+    public static void main(String args[]) 
+    {
+        GeeksForGeeks geeks = new geeksForGeeks();
+        geeks.greeting();
+    }
+}
+
+Above program will be successfully compiled and generate two classes GeeksForGeeks.class and G4G.class .
+Now remove GeeksForGeeks.class file and run G4G.class.
+At Java runtime NoClassDefFoundError will be thrown.
+
+ClassNotFoundException occurs when classpath is does not get updated with required JAR files while error occurs when required class definition is not present at runtime.
+
+(

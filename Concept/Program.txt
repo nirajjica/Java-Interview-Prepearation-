@@ -1,0 +1,39 @@
+Big O Notation:
+	Run in Constant time : O(1)
+
+	Leaner  Time  : O(n)
+
+
+1:Algo 1:
+	int a;
+	for(a=1 to n)
+	pf("hi")
+
+	O(n)
+
+2: Algo2()
+	{
+	for(a=1;a<n;a=a*2)
+	pf("hi");
+	}
+	K=logn
+
+3: Algo3()
+	{
+	int a;
+	for(a=1 to n)
+	for(b=1 to n)
+	pf("Hi")
+	}
+
+	O(n2)
+
+
+1: Array contain yellow and pink set of boll how dou you sort first all yello then pink in a single array
+2: Remove all charater from second string that availabe in first string.
+3: Find string from Stringg that follow continious  such as nsgdjabcdkkji  : abc will be largest
+
+throw new UnsupportedOperationException("majority(int input1,int[] input2)");
+
+https://www.geeksforgeeks.org/java-program-to-show-shallow-cloning-and-deep-cloning/?ref=rp
+https://www.geeksforgeeks.org/prevent-singleton-pattern-reflection-serialization-cloning/

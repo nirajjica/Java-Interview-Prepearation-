@@ -1,0 +1,18 @@
+		Spring Security
+
+Spring makes use of the DlegatingFilterProxy for implementing security mechanisms.
+
+DelegatingFileterProxy:
+	It is a Proxy for standard Servlet Filter.
+	It delegates to a Spring-managed bean that implements the Filter interface.
+	It si the starting point in the SpringSecurityFileterChain.
+
+OAuth:
+	Open Authorization is a simple way to publish and interact with protected data.
+	It is an Open standard for token-based authenticationand authorization on the internet.
+	The OAuth specification describes five grants for acquiring an access token:
+		1: Authorization Code Grant
+		2: Implicit Grant
+		3: Resource Owner Credentials Grant
+		4: Client Credentials Grant
+		5: Refresh Token Grant

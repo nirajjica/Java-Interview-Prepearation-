@@ -1,0 +1,487 @@
+Java 8
+
+Features of java 8
+1: Lamda Expression
+2: Functional Interface
+3: Daufalt Methods and static method
+4: Predifined Functional Interface
+	Predicate
+	Function
+	Consumer
+	Supplier
+	etc
+
+5: Double Colon Operator(::)
+	Method Reference
+	Constructor Reference
+6: Stream
+7: Date and Time API
+8: Optional Class
+
+1: Lamda Expression
+	No Name
+	No Return Type
+	No Modifired
+
+public void disp()
+{ S.o.p("Hello");}
+
+Replaced by Lamda Expression
+
+()->{S.o.p("hello");}
+
+public void disp(int a,int b)
+{ S.o.p(a+b); }
+
+Replaced by Lamda
+
+(int a,int b)->{S.o.p(a+b);}
+or
+(int a,int b)-> S.o.p(a+b);
+or
+(a,b)->S.o.p(a+b);
+
+
+public int sqr(int a)
+{
+return a*a;
+}
+
+(int a)->{a*a}
+or
+(a)->(a*a)
+or
+a->a*a
+
+
+Note:
+ Without curly braces we can not use return keyword. Compiler will consider returned value automaticall
+ within curly braces if we want to return some value compulsory we should use return statement
+n->return n*n; === invalid
+n->{return n*n;}; ==valid
+n->(return n*n); === Invalid
+n->{n*n;}; === Invalid
+n->n*n; === Valid
+
+Functional Interface
+
+Runnable== run()
+Comparable== compareTo()
+Comapretor== compare()
+ActionListner== actionPerformed()
+Callable == call()
+
+Note:
+Every lamda Expression predefined by Functional Interface
+
+Landa expression is invoked by using Functional interface
+
+Functiona Interface:  SAM(Single Abstract Method)
+
+
+Default Method and static methods
+
+interface Demo
+{
+public void m1();
+default void m2()
+{
+}
+public static void m3()
+{
+}
+}
+Annotation
+@FunctionalInterface
+
+@FunctionalInterface
+interface Demo
+{
+public void m1();
+default void m2()
+{
+}
+public static void m3()
+{
+}
+}
+
+
+Functional Interface WRT inheritance
+
+@FunctionaInterface
+interface A
+{ public void disp();}
+
+@FunctionalInterface
+interface B extends A
+{
+}
+
+Chain interface also a Functional interface in inheritance
+
+@FunctionaInterface
+interface A
+{ public void disp();}
+
+@FunctionalInterface
+interface B extends A
+{
+public void disp();  //this is also valid functional interface just overide method
+}
+
+
+@FunctionaInterface
+interface A
+{ public void disp();}
+
+@FunctionalInterface
+interface B extends A
+{
+public void disp1();  //this is not valid functional interface beacuse parent already contaion absract method 
+}
+
+
+@FunctionaInterface
+interface A
+{ public void disp();}
+
+interface B extends A
+{
+public void disp();  //this is also valid functional interface because B is a normal interface
+}
+
+
+How to link lamda expression with functional interface 
+
+@functionaInterface
+interface Demo
+{
+public void show();
+}
+
+class Example implements Demo
+{
+public void show()
+	{ 
+	S.o.p("from example");
+	}
+}
+class Test
+{
+p.s.v.m(-)
+	{
+	Example e=new Example();
+	e.show();
+	}
+} 
+
+
+class Test
+{
+p.s.v.m(-)
+	{
+	Demo e=new Example();
+	e.show();
+	}
+} 
+
+We can impliment functional interface by lamda expression
+
+class Test
+{
+p.s.v.m(-)
+	{
+	Demo d=()->S.o.p("Hello....");
+	d.show();
+	}
+} 
+
+interface D
+{
+	public void disp(); 
+}
+
+/*
+ * class A implements D { public void disp() { System.out.println("Hello"); } }
+ */
+public class FuntionalExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//D d=new A();
+		//d.disp();
+		D d1=()->System.out.println("From functional");
+		d1.disp();
+
+	}
+
+}
+
+
+interface aa
+{
+	public void sum(int a,int b);
+}
+
+/*
+ * class DD implements aa { public void sum(int a,int b) {
+ * System.out.println(a+b); } }
+ */public class Functional2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		/*
+		 * aa a=new DD(); a.sum(100,2000);
+		 */
+	aa a=(x,y)->System.out.println(x+y);
+	a.sum(200,100);
+	}
+
+}
+
+
+interface SQR
+{
+	public int cal(int x);
+}
+public class Functional3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		SQR s=(x)->x*x;
+		System.out.println(s.cal(5));
+		
+	}
+
+}
+
+lamda expression generate .class file or not?
+No seperate .class file created for lamda expression
+
+Lamda Expression with thread
+
+class DThread implements Runnable
+{
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		for(int a=1;a<20;a++)
+		{
+			System.out.println("Child Thread"+a);
+		}
+	}
+	
+}
+public class FunctionWithThread {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+       DThread d=new DThread();
+      Thread t=new Thread(d);
+      t.start();
+	}
+
+}
+
+Use Lamda expression
+
+public class FunctionWithThread {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Runnable r=()->{
+			for(int a=0;a<5;a++)
+			{
+				System.out.println("Child "+a);
+			}
+		};
+     //  DThread d=new DThread();
+      Thread t=new Thread(r);
+      t.start();
+	}
+
+
+Lamda Expression with Collection
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+class MyComp implements Comparator<Integer>
+{
+
+	@Override
+	public int compare(Integer o1, Integer o2) {
+		// TODO Auto-generated method stub
+		if(o1<o2)
+		{
+			return -1;
+		}else if(o1>o2)
+		{
+			return +1;
+		}
+		else
+		{
+		return 0;
+		}
+	}
+	
+}
+public class LamdaWithCollection {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<Integer> al=new ArrayList<Integer>();
+		al.add(10);
+		al.add(11);
+		al.add(12);
+		al.add(18);
+		al.add(14);
+		al.add(00);
+		al.add(144);
+		al.add(125);
+		al.add(187);
+		al.add(149);
+		System.out.println(al);
+		Collections.sort(al,new MyComp());
+		System.out.println(al);
+		
+	}
+
+}
+ 
+With lamda Expression
+
+class MyComp implements Comparator<Integer>
+{
+
+	@Override
+	public int compare(Integer o1, Integer o2) {
+		// TODO Auto-generated method stub
+		return (o1<o2)?-1:(o1>o2)?1:0;
+		}
+	
+}
+
+Complete lamda Expression implement
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+
+public class LamdaWithCollection {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<Integer> al=new ArrayList<Integer>();
+		al.add(10);
+		al.add(11);
+		al.add(12);
+		al.add(18);
+		al.add(14);
+		al.add(00);
+		al.add(144);
+		al.add(125);
+		al.add(187);
+		al.add(149);
+		System.out.println(al);
+		Comparator<Integer> c=(a1,a2)->(a1<a2)?-1:(a1>a2)?1:0;
+		
+		Collections.sort(al,c);
+		System.out.println(al);
+		
+	}
+
+}
+
+
+Iterate record from list using stream
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+
+public class LamdaWithCollection {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<Integer> al=new ArrayList<Integer>();
+		al.add(10);
+		al.add(11);
+		al.add(12);
+		al.add(18);
+		al.add(14);
+		al.add(00);
+		al.add(144);
+		al.add(125);
+		al.add(187);
+		al.add(149);
+		System.out.println(al);
+		Comparator<Integer> c=(a1,a2)->(a1<a2)?-1:(a1>a2)?1:0;
+		
+		Collections.sort(al,c);
+		System.out.println(al);
+		
+		al.stream().forEach(System.out::println);
+		
+	}
+
+}
+
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+class Emp
+{
+	int id;
+	String name;
+	public Emp(int id,String name)
+	{
+		this.id=id;
+		this.name=name;
+	}
+	public String toString()
+	{
+		return id+ ":"+name;
+	}
+}
+public class LamdaWithClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<Emp> ale=new ArrayList<Emp>();
+		Emp e=new Emp(1090,"Niraj");
+		Emp e1=new Emp(1005,"oiraj1");
+		Emp e2=new Emp(1003,"airaj2");
+		Emp e3=new Emp(1903,"liraj3");
+		Emp e4=new Emp(1002,"biraj5");
+		Emp e5=new Emp(1001,"Niraj6");
+		ale.add(e);
+		ale.add(e1);
+		ale.add(e2);
+		ale.add(e3);
+		ale.add(e4);
+		ale.add(e5);
+		System.out.println(ale);
+		//Comparator<Emp> c=(emp1,emp2)->(emp1.id<emp2.id)?-1:(emp1.id>emp2.id)?+1:0;
+		
+		//Collections.sort(ale,c);
+		Collections.sort(ale,(emp,emp1)->(emp.id<emp1.id)?-1:(emp.id>emp1.id)?+1:0);
+		System.out.println(ale);
+		Collections.sort(ale,(emp2,emp3)->emp2.name.compareTo(emp3.name));
+		System.out.println(ale);
+		ale.stream().forEach(System.out::println);
+	}
+
+}
+
+
+Lamda expression vs annonymous inner class
+	Anonymous Inner Class can extend a normal class
+	Anonymous Inner Class can extend an abstract class
+	Anonymous Inner Class can implements an interface that contain many abstract methods
+if employee class had empid and salary then how to find second highest slary based on employees id

@@ -1,0 +1,24 @@
+	JVM Architecture
+
+Class Loader Subsystem
+
+It is mainly responsible for three activities
+	1: Loading
+	2: Linking
+	3: Initialization
+
+
+ClassLoader
+	1: Bootstrap ClassLoader
+	2: Extension ClassLoader
+	3: Application ClassLoader
+
+
+How to avoid java Memory Leaks
+
+1: Use reference objects to avoid memory leaks
+	Reference has three subclasses
+		1: Phantom Reference
+		2: Soft Reference
+		3: Weak reference
+2: Avoid memory leaks relted to a WebApp classloader

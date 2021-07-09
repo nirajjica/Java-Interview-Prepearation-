@@ -1,0 +1,3 @@
+Find Nth salary of Employee
+
+SELECT salary FROM emp ORDER BY salary desc limit 3,1

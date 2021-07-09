@@ -1,0 +1,293 @@
+Fail Fast And Fail Safe Iterators in Java
+
+Fail Fast:
+	Fail-Fast iterators immediately throw ConcurrentModificationException if there is structural modification of the collection.
+	Structural modification means adding, removing any element from collection while a thread is iterating over that collection.
+	Iterator on ArrayList,Vector, HashMap classes are some examples of fail-fast Iterator.
+
+Fail Safe:
+	Fail-Safe iterators don’t throw any exceptions if a collection is structurally modified while iterating over it. 
+	Iterator on CopyOnWriteArrayList, ConcurrentHashMap classes are examples of fail-safe Iterator.
+
+Note:
+CopyOnWriteArrayList:  Whenever we do the structural modification it creetae seperate cope of instance
+Example:
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Iterator;
+  
+class FailSafe {
+    public static void main(String args[])
+    {
+        CopyOnWriteArrayList<Integer> list
+            = new CopyOnWriteArrayList<Integer>(new Integer[] { 1, 3, 5, 8 });
+        Iterator itr = list.iterator();
+        while (itr.hasNext()) {
+            Integer no = (Integer)itr.next();
+            System.out.println(no);
+            if (no == 8)
+  
+                // This will not print,
+                // hence it has created separate copy
+                list.add(14);
+           // System.out.println(list); check it will created seperate code
+        }
+    }
+}
+
+ConcurrentHashMap:
+	Whenever we do structural modification it does not create seperate code.
+
+Example:
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.Iterator;
+  
+public class FailSafeItr {
+    public static void main(String[] args)
+    {
+  
+        // Creating a ConcurrentHashMap
+        ConcurrentHashMap<String, Integer> map
+            = new ConcurrentHashMap<String, Integer>();
+  
+        map.put("ONE", 1);
+        map.put("TWO", 2);
+        map.put("THREE", 3);
+        map.put("FOUR", 4);
+  
+        // Getting an Iterator from map
+        Iterator it = map.keySet().iterator();
+  
+        while (it.hasNext()) {
+            String key = (String)it.next();
+            System.out.println(key + " : " + map.get(key));
+  
+            // This will reflect in iterator.
+            // Hence, it has not created separate copy
+            map.put("SEVEN", 7);
+        }
+    }
+}
+
+
+
+
+How Fail Fast Iterator works ?
+	Fail-fast iterators use an internal flag called "modCount"
+	"modCount" is updated each time a collection is modified. 
+	If modCount is modify by next method of Iterator then It throws ConcurrentModificationException
+
+
+
+
+Covariant return types in Java 
+	
+	Co-variant return type is based on Liskov substitution principle
+        it is possible to have different return type for a overriding method in child class, but child’s return type should be sub-type of parent’s return type.
+
+class A {}
+class B extends A {}
+  
+class Base
+{
+    A fun()
+    {
+        System.out.println("Base fun()");
+        return new A();
+    }
+}
+  
+class Derived extends Base
+{
+    B fun()
+    {
+        System.out.println("Derived fun()");
+        return new B();
+    }
+}
+  
+public class Main
+{
+    public static void main(String args[])
+    {
+       Base base = new Base();
+       base.fun();
+  
+       Derived derived = new Derived();
+       derived.fun();
+    }
+}
+Output:
+
+Base fun()
+Derived fun()
+
+
+Second Example with method overring
+	nature and signature must be same
+
+class AA
+{
+	public Number getData(int x)
+	{
+		return x;
+	}
+}
+class BB extends AA
+{
+	public Number getData(int x)
+	{
+		return x;
+	}
+}
+public class MethodOverideEx {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+
+
+Steps to implement immutable Class
+
+	The class must be declared as final (So that child classes can’t be created)
+	Data members in the class must be declared as private (So that direct access is not allowed)
+	Data members in the class must be declared as final (So that we can’t change the value of it after object creation)
+	A parameterized constructor should initialize all the fields performing a deep copy (So that data members can’t be modified with object reference)
+	Deep Copy of objects should be performed in the getter methods (To return a copy rather than returning the actual object reference)
+	No setters (To not have the option to change the value of the instance variable)
+
+Marker Interface
+
+	A marker interface is an interface that has no methods or constants inside it.
+	It provides run-time typw information about object.
+	It is also known as tagging ineterface.
+	Java has many built-in marker interfaces, such as Serializable, Cloneable, and Remote.
+	1) java.io.Serializable
+2) java.lang.Cloneable
+3) javax.servlet.SingleThreadModel
+4) javax.ejb.EnterpriseBean
+5) java.util.RandomAccess
+6) java.rmi.Remote
+7) java.util.EventListener
+
+ How can one do custom serialization?   
+	To remove loss of data by using Trainsient variable we need to customozed Serializable.
+	Need to override two methods
+		1: writeObject(ObjectOutputStream oos) throws Exceeption
+		2: readObject(ObjectInputStream ois)throws Exception
+
+
+How to avoid serialization of child class ?
+
+In order to prevent subclass from serialization 
+we need to implement writeObject() and readObject() 
+methods which are executed by JVM during serialization 
+and deserialization also NotSerializableException is 
+made to be thrown from these methods
+
+
+
+
+shallow / deep cloning being done by java collections.
+
+	Copy constuctor of collection in java only provide shallow cloning not deepm copy
+	Shallow copy of collection with Immutable Objects.
+	If only primitive type fields or Immutable objects are there then there is no difference between shallow and deep copy in Java.
+	Deep copy is expensive as compare to shallow copy in terms of object creation
+
+
+Method Reference in java 8
+	A method reference is the shorthand syntax for a lambda expression that contains just one method call.
+	The method references can only be used to replace a single method of the lambda expression. 
+
+	Object :: methodName 
+	Example  :---  
+	list.forEach(s -> System.out.println(s));     list.forEach(System.out::println); 
+	
+	There are Four type method reference:
+		1: Static Method Reference
+		2: Instance Method Reference of a particular object
+		3: Instance Method treference of an arbitrary object of a particular type.
+		4: Constructor Reference
+
+Static Method Reference
+	Lamda Expression  : (args) -> Class.staticMethod(args)  
+	Method Reference  : Class::ststicMethod
+
+Reference to an Instance method
+	Lamda expression  : (args)->obj.instanceMethod(args)
+	Method Reference  : obj::instanceMethod
+
+
+Reflection:
+	Reflection is an API which is used to examine or modify the behavior of methods,classes,interfaces at runtime.
+	Reflection can be used to get information about
+		1: Class    :getClass()
+		2: Constructor : getConstructors()
+		3: Methods  : getMethods()
+
+	Through reflection we can access the private variables and methods of a class with the help of its class object
+
+
+Clone in Collection
+1: Using Copy Constructors
+	ArrayList al=new ArrayList(Colection c)
+2: Using addAll(Collection c) method
+
+3:Using streams in java 8
+	1: Create a class
+	2: Create a List and add record by using Arrays.asList()
+	3: Convert List object into stream object using stream method
+	4: Use collect(Collectors.toList())
+
+4: Using Clone
+	1: Overide clone method
+	protected Object clone() throws CloneNotSuppoertedException
+
+5: Usining Apache Commons Lang
+	1: Create a Serializable class.
+	2: Create List by using Arrays.asList()
+	3: Create Empty List
+	4: Add element by using SerializationUtils.clone pass by add method
+	Syntax:
+	public static T clone(T object)
+
+
+
+Generics in Java
+	Generics means parameterized types.
+	Class: class Test<T>
+	Method : static <T> void display(T data)
+	Advantage of Generics
+		1: Code Reuse
+		2: Type Safety
+		3: Individual Type casting is not needed
+		4: Itv promotes code reusability
+
+
+Lamda Expression:
+	It basically express instances of functional interface.
+	Lamda Expressions only implemets abstract function and therefore implement functional interface.
+	Its formation by
+		1: Argument List
+		2: Arrow Token
+		3: Body of Lamda Expression
+
+
+What are Reentrant Locks?
+	The ReentrantLock class implements the Lock interface and provides syncronization to methods while accessing shared resources.
+	Methods of ReentrantLock
+		1: lock()
+		2: unlock()
+		3: tryLock()
+		4: tryLock(long timeout, TimeUnit unit)
+		5: lockInterruptibly()
+		6: getHoldCount()
+		7: isHeldByCurrentThread()
+
+
+
+Stream API
+	It allows to create multiple instances from a single source.

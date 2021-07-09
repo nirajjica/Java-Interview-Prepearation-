@@ -1,0 +1,17 @@
+1: https://www.geeksforgeeks.org/frequent-word-array-strings/
+2: https://www.geeksforgeeks.org/minimum-distance-between-any-most-frequent-and-least-frequent-element-of-an-array/?ref=rp
+3:https://www.geeksforgeeks.org/most-frequent-element-in-array-after-replacing-given-index-by-k-for-q-queries/?ref=rp
+4: https://www.geeksforgeeks.org/frequent-element-array/?ref=rp
+5: https://www.geeksforgeeks.org/remove-an-occurrence-of-most-frequent-array-element-exactly-k-times/?ref=rp
+6: https://www.geeksforgeeks.org/remove-an-occurrence-of-most-frequent-array-element-exactly-k-times/?ref=rp
+7: https://www.geeksforgeeks.org/most-frequent-word-in-first-string-which-is-not-present-in-second-string/?ref=rp
+8: https://www.geeksforgeeks.org/generate-an-array-consisting-of-most-frequent-greater-elements-present-on-the-right-side-of-each-array-element/?ref=rp
+9: https://www.geeksforgeeks.org/find-the-most-frequent-digit-without-using-arraystring/?ref=rp
+10: https://www.geeksforgeeks.org/queries-to-insert-delete-one-occurrence-of-a-number-and-print-the-least-and-most-frequent-element/?ref=rp
+11: https://www.geeksforgeeks.org/kth-most-frequent-character-in-a-given-string/?ref=rp
+12: https://www.geeksforgeeks.org/count-of-substrings-having-the-most-frequent-character-in-the-string-as-first-character/?ref=rp
+13: https://www.geeksforgeeks.org/most-frequent-subtree-sum-from-a-given-binary-tree/?ref=rp
+14: https://www.geeksforgeeks.org/smallest-subarray-with-all-occurrences-of-a-most-frequent-element/?ref=rp
+15: https://www.geeksforgeeks.org/c-program-find-second-frequent-character/?ref=rp
+16: https://www.geeksforgeeks.org/find-top-k-or-most-frequent-numbers-in-a-stream/?ref=rp
+17: https://www.geeksforgeeks.org/most-frequent-character-in-a-string-after-replacing-all-occurrences-of-x-in-a-binary-string/?ref=rp

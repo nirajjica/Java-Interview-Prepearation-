@@ -1,0 +1,74 @@
+Race Condition:
+A race condition occurs when two or more threads can access shared data 
+and they try to change it at the same time.
+
+
+Thread Dump: 
+	A thread dump is a dump of stacks of all live threads.
+	This is usefull for analysing what an app is up to at some point in time.
+	It is responsible for handle execution time problem such as deadlock.
+	WebSphere a javacore file is a thread dump 
+	It manage state of thread.
+Head Dump:
+	A head Dump is a dump of the state of the java heap memory.
+	It is useful for analysing what use of memory an app is making at some point in time so handy in diagnosing some memory issues.
+	If done at intervals handy in diagnosing memory leaks.
+	Lock and loaded classes and some limited memory usage info, and a PHD file is aheap dump.
+	JVM Heap Dump is a snapshot of a JVm heap memory in a given time.
+	It manage state of object.
+	Example: JVM Heap memory Issue and OutOfMemoryError
+	Heap Dump can be created manually by killing the process using kill-3.
+	It uses Eclipse Memory Analyzer.
+  	
+	JDk Tool that handle heap dump
+		1: jmap
+		2: jcmd
+		3: JVisualVM
+		4: JMX   A) JConsole   B) Programmatic way
+
+Core Dump:
+	It is a OS level memory usage Objects.
+	It has more informationthan a heap dump.
+	Core dump is not created when we kill a process purposely.
+
+
+
+IBM Tool   : BM Thread and Monitor Dump Analyzer	
+	   :  MDD4J or Heap Analyzer
+
+1:JMAP:
+	jmap prints heap dumps into a specified file location
+	 It can be found in \bin folder.
+	If set option is 'live' then only live objects in the memory are written into the heap dump file
+	If option is not pass 'live' then all the objects, even the ones which are ready to be garbage collected are printed in the heap dump file.
+
+2: HeapDumpOnOutOfMemoryError:
+	When an application experiences java.lang.OutOfMemoryError. Then that application capture in Heap Dump.
+
+
+3: jcmd:
+	jcmd tool is used to send diagnostic command requests to the JVM
+	It’s packaged as part of JDK. It can be found in \bin folder.
+	
+
+4:JVisualVM:
+	JVisualVM is am monitoring  and troubleshooting tool that is packaged within the JDK.
+	When you lunchn  this tool, you can see all the Java processes that are running on the loal machine.
+	You can also connect to java process running on a remote machine using this tool.
+	Steps
+		1:Launch jvisualvm under \bin\ folder
+		2:Right-click on one of the Java process
+		3:Click on the ‘Heap Dump’ option on the drop-down menu
+		4:Heap dump will be generated
+		5:File path where heap dump is generated will be specified in the Summary Tab > Basic Info > File section
+5: JMX
+	
+
+Customized DumpHead
+
+public static void dumpHeap(String filePath, boolean live) throws IOException {
+    MBeanServer server = ManagementFactory.getPlatformMBeanServer();
+    HotSpotDiagnosticMXBean mxBean = ManagementFactory.newPlatformMXBeanProxy(
+      server, "com.sun.management:type=HotSpotDiagnostic", HotSpotDiagnosticMXBean.class);
+    mxBean.dumpHeap(filePath, live);
+}

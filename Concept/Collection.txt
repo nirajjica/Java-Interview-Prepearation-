@@ -1,0 +1,153 @@
+HashMap:
+
+	HashMap contains an array of nodes.
+	Node is represented as a class.
+	It uses an array and LinkedList internally for storing kay and value
+	There are four fields in HashMap
+	Node<K,V>, int hash,K key, V Value, Node<K,V> next
+
+
+
+Complexity:
+
+1: ArrayList
+	add()  :   o(1)
+		   O(n) in worst case
+
+	add(index,element)  :O(n)
+	get()	: O(1)
+	remove()	:O(n)
+	indexOf()	: O(n)
+	contains()	: based on indexOf(). O(n) 
+
+2: CopyOnWriteArrayList
+	add()	:O(n)
+	get()	:O(1)
+	remove():O(n)
+	contains(): O(n)
+
+Note: It is significantly slow on data modification.
+
+3:LinkedList
+	add() 		:O(1)
+	add(index,element):O(n)
+	get()		:O(1)
+	remove(element) :O(1)
+	remove(index)  	:O(n)
+	contain()	:O(n)
+
+Note: ArrayList is better than LinkedList
+
+List Implementation
+
+                      get  add  contains next remove(0) iterator.remove
+ArrayList             O(1) O(1) O(n)     O(1) O(n)      O(n)
+LinkedList            O(n) O(1) O(n)     O(1) O(1)      O(1)
+CopyOnWrite-ArrayList O(1) O(n) O(n)     O(1) O(n)      O(n)
+
+
+Set Implementation
+                     add      contains next     notes
+HashSet               O(1)     O(1)     O(h/n)   h is the table capacity
+LinkedHashSet         O(1)     O(1)     O(1) 
+CopyOnWriteArraySet   O(n)     O(n)     O(1) 
+EnumSet               O(1)     O(1)     O(1) 
+TreeSet               O(log n) O(log n) O(log n)
+ConcurrentSkipListSet O(log n) O(log n) O(1)
+
+
+
+Map implementations:
+
+                      get      containsKey next     Notes
+HashMap               O(1)     O(1)        O(h/n)   h is the table capacity
+LinkedHashMap         O(1)     O(1)        O(1) 
+IdentityHashMap       O(1)     O(1)        O(h/n)   h is the table capacity 
+EnumMap               O(1)     O(1)        O(1) 
+TreeMap               O(log n) O(log n)    O(log n) 
+ConcurrentHashMap     O(1)     O(1)        O(h/n)   h is the table capacity 
+ConcurrentSkipListMap O(log n) O(log n)    O(1)
+
+
+Queue implementations:
+
+                      offer    peek poll     size
+PriorityQueue         O(log n) O(1) O(log n) O(1)
+ConcurrentLinkedQueue O(1)     O(1) O(1)     O(n)
+ArrayBlockingQueue    O(1)     O(1) O(1)     O(1)
+LinkedBlockingQueue   O(1)     O(1) O(1)     O(1)
+PriorityBlockingQueue O(log n) O(1) O(log n) O(1)
+DelayQueue            O(log n) O(1) O(log n) O(1)
+LinkedList            O(1)     O(1) O(1)     O(1)
+ArrayDeque            O(1)     O(1) O(1)     O(1)
+LinkedBlockingDeque   O(1)     O(1) O(1)  
+
+
+
+
+Note About Performance
+We’ll extend  java.util.AbstractList, and 
+don’t forget to increment modCount when changing 
+internal data so that the ConcurrentModificationException 
+mechanism is inherited from it.
+
+ retainAll(Collection) 
+
+
+ArrayList:
+
+	The ArrayList uses an array for storing the data.
+	The ArrayList.contains will be of O(n) complexity. 
+	So essentially searching in array again and again will have O(n^2) complexity.
+
+HashSet:
+
+ 	HashSet uses hashing mechanism for storing the elements into their respective buckets. 
+ 	The operation of HashSet will be faster for long list of values. 
+	It will reach the element in O(1).
+
+
+public static void main(String[] args) {
+        Set<String> hashSet = new HashSet<>();
+        Set<String> treeSet = new TreeSet<>();
+        List<String> arrayList = new ArrayList<>();
+        List<String> linkedList = new LinkedList<>();
+
+        List<String> base = new ArrayList<>();
+
+        for(int i = 0; i<5000000; i++){
+            if(i%100000==0) System.out.print(".");
+            base.add(UUID.randomUUID().toString());
+        }
+
+        System.out.println("\nBase size : " + base.size());
+        String item = base.get(25000);
+        System.out.println("SEARCHED ITEM : " + item);
+
+        hashSet.addAll(base);
+        treeSet.addAll(base);
+        arrayList.addAll(base);
+        linkedList.addAll(base);
+
+        long ms = System.currentTimeMillis();
+        System.out.println("hashSet.contains(item) ? " + (hashSet.contains(item)? "TRUE " : "FALSE") + (System.currentTimeMillis()-ms) + " ms");
+        System.out.println("treeSet.contains(item) ? " + (treeSet.contains(item)? "TRUE " : "FALSE") + (System.currentTimeMillis()-ms) + " ms");
+        System.out.println("arrayList.contains(item) ? " + (arrayList.contains(item)? "TRUE " : "FALSE") + (System.currentTimeMillis()-ms) + " ms");
+        System.out.println("linkedList.contains(item) ? " + (linkedList.contains(item)? "TRUE " : "FALSE") + (System.currentTimeMillis()-ms) + " ms");
+    }
+
+
+
+
+
+
++------------+--------+-------------+-----------+----------+----------+-----------+
+| Collection | Random | Containment | Insertion | Addition |  Removal | Memory    |
+|            | access |             |           |          |          |           |
++------------+--------+-------------+-----------+----------+----------+-----------+
+| List<T>    | O(1)   | O(n)        | O(n)      | O(1)*    | O(n)     | Lesser    |
+| HashSet<T> | O(n)   | O(1)        | n/a       | O(1)     | O(1)     | Greater** |
++------------+--------+-------------+-----------+----------+----------+-----------+
+
+
+

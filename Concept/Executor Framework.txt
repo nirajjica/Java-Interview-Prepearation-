@@ -1,0 +1,86 @@
+ What do you know about design patterns?
+
+2. Explain SOLID Programming.
+
+3. What do you mean by SQL join and how can you use it?
+
+4. Explain async programming and its working.
+
+5. What does Micro Services architecture do?
+
+6. What is the major role of DevOps and its elements in the environment?
+
+7. What are the caching types for Web APIs?
+
+8. How can you set up a DevOps environment using the Azure instance?
+
+9. What is the purpose of Dependency Injection?
+
+10. Give us an example of the palindrome method implementation of a programming language.
+
+
+
+Executor Framework:
+-- This is used for impliments Producer Consumer Application.
+-- The java.util.concurrent.Executors provide factory methods which are be used to create ThreadPools of worker threads.
+-- It is the job of the Executor Framework to schedule and execute the submitted tasks and return the results from the thread pool.
+-- The Executor schedule the task then execute that task after that return result from Thread Pool.
+-- It uses Queue to maintain task.
+-- ExecutorService is responsible to handle all threadPool task
+-- ExecutorService manage life cycle of thread.
+-- ExecutorService contains following methods
+	1: submit()    :Returns Future Object
+	2: invokeAny() :Returns String
+	3: invokeAll() :Returns List of Future Objects
+	4: shutdown()  : Stop to accepting new task and shut down after all running threads finish their current work.
+	5: shutdownNow() : Destroy ExecutorService immediatly, but it does not guarantee taht all the running thread will be stopped at same time.
+	6: awaitTermination(): combination of above both
+
+-- Type of Executors
+	1: SingleThreadExecutor
+	2: FixedThradPool(n)
+	3: CacheThreadPool
+	4: ScheduledExcutor
+
+1:SingleThreadExecutor:
+	--ExecutorService eservice=Executors.newSingleThreadExecutor()
+2:FixedThreadPool:
+	-- The task is stored inside LinkedBlockingQueue.
+	-- ExecutorService eservice=Executors.newFixedThreadPool(4)
+
+3: ChacheThreadPool
+	-- Mostly used with lots of live parallel task.
+	-- Default waiting time is 60 seconds
+	-- ExecutorService eservice=Executors.newCacheThreadPool();
+
+4: ScheduledExceutor
+	-- This executor is used when we have a task that need to be run at reguar interval or if we wish to delay a certain task
+	-- The task can be scheduleed in ScheduledExecutor by using two methods
+		1: scheduleAtFixedRate:  It containd following pararameter
+			1: Runnable command
+			2: long initialDelay
+			3: long period
+			4: TimeUnit unit
+		2: scheduleWithFixedDelay: It containd following pararameter
+			1: Runnable command
+			2: long initialDelay
+			3: long period
+			4: TimeUnit unit
+
+Future Object:
+
+	--  java.util.concurrent.Future
+	--  Future<String> result = eService.submit(callableTask)
+	--  It contains following methods
+		: get()
+			-- It thows ExecutionException
+		: get(long timeout, TimeUnit unit)
+
+			--It thows TimeOutException if result is not returned in the stipulated timeframe.
+		: cancel(boolean myInterruptIfrunning)
+		: isCancelled()
+	-- 
+
+does it make sense to use Executors.newFixedThreadPool(1)?
+	Yes. It makes sense If you want to process all submitted tasks in order of arrival
+	newFixedThreadPool API will return ThreadPoolExecutor as ExecutorService

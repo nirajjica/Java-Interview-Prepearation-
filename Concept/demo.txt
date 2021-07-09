@@ -1,0 +1,12 @@
+Spring
+	1: Takes time to have Spring application up and running
+	2: Manages Life Cycle of Java
+	3: DI Framework
+
+Spring Boot
+	1: Shortest way to run Spring application
+	2: Need not worry about configuring a data source
+	3: Pre-configured set of frameworks/technologies
+
+
+

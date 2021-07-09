@@ -1,0 +1,118 @@
+Designed Pattern
+
+1: Creational 
+2: Structural
+3: Behavioural
+
+1: Creational Designed Pattern
+	1: Abstract factory
+	2: Adapter
+	3: Builder
+	4: Bridge
+	5: Factory 
+	6: Composite
+	7: Prototype
+	8: Decorator
+	9: Singleton
+	10: Facade
+
+Abstract Facory Pattern:
+
+	Creationa Designed Pattern
+	Object is not related to concrete class
+	Collection of de similarities Class
+	Class name in java
+		DocumentBuilderFactory   : newInstance()
+		XPathFactory    : newOnstance()
+
+Adapter Designed Pattern
+	Allows objects with incompatible inetrface to collaborate.
+	Structiral designed Pattern
+	Java class example
+		Arrays   : asList()
+		Collections : list()
+		Collections  :enumeration()
+		OutputStreamWriter
+
+Builder Designed Pattern
+	The pattern allows you to produce different types and repersentaions of an object using the same condtuction code
+	Its especially useful when you need to create an object with lots of possibible configuration optiond.
+	Java classes
+		StringBuilder : append()(Unsyncronized)
+		StringBuffer  : append()(Syncronized)
+		
+
+Factory Method Designed Pattern
+	Provides an inetrface for creating object in a superclass.
+	Its a creational designed pattern
+	Factory methods can be recognized by creation methods,which create objects from concreate classes, bet return the as object of abstract type or interface.
+
+	Java Classes
+		Calender :getInstance()
+		ResourceBundle :getBundle() 
+
+Protype Designed Pattern
+	Copy exiting object without making your code dependent on their classes.
+	Creational Desiggned pattern
+	Java Classes
+		Cloneable :clone
+
+Decorator Designed Pattern 
+	Structural Designed Pattern
+	Attached new behaviour of an object.
+	Java Classes
+		InputStream
+		OutputStream
+		Collections
+		HttpServletRequestWrapper
+		HttpServletResponseWrapper
+
+Sigleton Designed Pattern
+	A class has only one instance, while providing a global point to this instance.
+	
+	We can createc singleton class by using following way
+		1: Private Constuctor
+		2: Syncronization method
+		3: static final variable
+		4: Using double Check lock with volatile Keyword
+		5: SingletonHolder
+		6: Enum
+		7: Using static block
+			Subpart of eager initialization
+			Very Simple to impement
+			No need to implement getInstance() method.
+			Instance can be accessed directly
+			Exceptions can be handled in static block
+
+		class ABC
+		{ public static ABC instance;
+		   private ABC(){}
+		   static{instance=new ABC(); } }
+
+Facade Designed Pattern
+	Structural Designed Pattern
+	Provides a simplified interface to a library
+	Java classes
+		FacesContext
+		ServletContext
+		HttpSession
+		HttpServeletRequest
+		HttpServletResponse
+
+Flighway Designed Pattern
+	Structural Designed Pattern
+	Fit more object into availabel of RAM  by sharing common parts.
+	All data is shared between object to each other
+	Java Classes
+		Proxy
+		RMI
+		EJB
+		Inject
+		PersistenceContext
+
+Observer Pattern
+	It defines a one-to-many relationship between to kind of objects.
+	The one side is called Subject, which maintains a list of Objects(called observers)
+	We create two kinds of Objects: Subject and Observers
+
+	

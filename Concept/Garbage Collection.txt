@@ -1,0 +1,276 @@
+Garbage Collection
+	Garbage Collection is an automatic process.
+	Main objective of GC is to free heap memory by destroying unreachable objects.
+	Grabage Collector is best example of Daemon Thread as it is always running in background.
+	It is non-deterministic and there is no way to predict when garbage collection will occur at run time
+	HotSpot is an oracle Garbage collection.
+	Garbage Collctor follow the basic process
+		1: Unreferenced Objects are identified and marked as ready for garbase collection
+		2: Marked objects are deleted
+
+Unreachable Objects: 
+	An object is said to be unreachable if it does not contain any reference to it.
+	Objects which are part of island of isolation are also called unreachable.
+
+An object eligibility for GC
+	1: Nullifying the reference Variable
+	2: Re-assigining the reference variable
+	3: Object created inside method
+	4: island of Isolation
+
+The heap is divided into three sections
+	1: Young Generation
+	2: Old Generation
+	3: Permanent Generation
+
+1: Young Generation
+	Newly created objects start in the Young Generation
+	It is divided into two part
+		1:Eden Space  : here all new object start
+		2: Two survivor space  (s0 and s1): Where new object moved from Eden after surviving one garbage collection cycle
+	It is a minor garbage collection event
+2: Old Generation
+	From young to old
+	Major collection event
+
+3: Permanent Generation
+	It stores classes and methods
+
+HotSpot has four garbage collectors
+	1: Serial
+	2: Parellel
+	3: CMS(Concurrent Mark Sweep)
+	4: G1(Garbage First)
+
+Serail:
+	All GC events are conducted serially in one thread
+
+Parallel:
+	Multiple threads are used for minor gc.
+	Single thread is used for major gc
+
+CMS(Concurrent Mark Sweep)
+
+
+System.gc()
+Runtime.getRuntime().gc()
+
+
+Example:
+public class Test
+{
+    public static void main(String[] args) throws InterruptedException
+    {
+        String str = new String("GeeksForGeeks");
+              
+        // making str eligible for gc
+        str = null; 
+              
+        // calling garbage collector
+        System.gc(); 
+              
+        // waiting for gc to complete
+        Thread.sleep(1000); 
+      
+        System.out.println("end of main");
+    }
+  
+    @Override
+    protected void finalize() 
+    {
+        System.out.println("finalize method called");
+    }
+}
+Output:
+
+end of main
+
+
+2:
+
+public class Test
+{
+    public static void main(String[] args) throws InterruptedException
+    {
+        Test t = new Test();
+              
+        // making t eligible for garbage collection
+        t = null; 
+              
+        // calling garbage collector
+        System.gc(); 
+              
+        // waiting for gc to complete
+        Thread.sleep(1000); 
+      
+        System.out.println("end main");
+    }
+  
+    @Override
+    protected void finalize() 
+    {
+        System.out.println("finalize method called");
+        System.out.println(10/0);
+    }
+      
+}
+Output:
+finalize method called
+end main
+
+3:
+public class Test
+{
+    static Test t ;
+      
+    static int count =0;
+      
+    public static void main(String[] args) throws InterruptedException
+    {
+        Test t1 = new Test();
+              
+        // making t1 eligible for garbage collection
+        t1 = null; // line 12
+              
+        // calling garbage collector
+        System.gc(); // line 15
+              
+        // waiting for gc to complete
+        Thread.sleep(1000); 
+      
+        // making t eligible for garbage collection,
+        t = null; // line 21
+              
+        // calling garbage collector
+        System.gc(); // line 24
+      
+        // waiting for gc to complete
+        Thread.sleep(1000); 
+              
+        System.out.println("finalize method called "+count+" times");
+          
+    }
+      
+    @Override
+    protected void finalize() 
+    { 
+        count++;
+          
+        t = this; // line 38
+              
+    }
+      
+}
+Output:
+
+finalize method called 1 times
+
+4:
+public class Test
+{
+    public static void main(String[] args)
+    {
+        // How many objects are eligible for 
+        // garbage collection after this line?
+        m1();  // Line 5
+    }
+  
+    static void m1() 
+    {
+        Test t1 = new Test();
+        Test t2 = new Test();
+    } 
+}
+
+Question :
+How many objects are eligible for garbage collection after execution of line 5 ?
+Answer :
+
+2
+
+5:
+public class Test
+{
+    public static void main(String [] args) 
+    {
+        Test t1 = new Test();
+        Test t2 = m1(t1); // line 6
+        Test t3 = new Test();
+        t2 = t3; // line 8
+          
+    }
+      
+    static Test m1(Test temp) 
+    {
+        temp = new Test();
+        return temp;
+    }
+}
+Question :
+How many objects are eligible for garbage collection after execution of line 8?
+Answer :
+
+1
+
+
+How to find out max memory, free memory and total memory in java?
+
+1: void gc()
+2: long freeMemory()
+3: long totalMemory()
+
+class memoryDemo
+{
+    public static void main(String arg[])
+    {
+        Runtime gfg = Runtime.getRuntime();
+        long memory1, memory2;
+        Integer integer[] = new Integer[1000];
+ 
+        // checking the total memory
+        System.out.println("Total memory is: "
+                           + gfg.totalMemory());
+ 
+        // checking free memory
+        memory1 = gfg.freeMemory();
+        System.out.println("Initial free memory: "
+                                      + memory1);
+ 
+        // calling the garbage collector on demand
+        gfg.gc();
+ 
+        memory1 = gfg.freeMemory();
+ 
+        System.out.println("Free memory after garbage "
+                           + "collection: " + memory1);
+ 
+        // allocating integers
+        for (int i = 0; i < 1000; i++)
+            integer[i] = new Integer(i);
+ 
+        memory2 = gfg.freeMemory();
+        System.out.println("Free memory after allocation: "
+                           + memory2);
+ 
+        System.out.println("Memory used by allocation: " +
+                                    (memory1 - memory2));
+ 
+        // discard integers
+        for (int i = 0; i < 1000; i++)
+            integer[i] = null;
+ 
+        gfg.gc();
+ 
+        memory2 = gfg.freeMemory();
+        System.out.println("Free memory after  "
+            + "collecting discarded Integers: " + memory2);
+    }
+}
+Output: 
+
+Total memory is: 128974848
+Initial free memory: 126929976
+Free memory after garbage collection: 128632384
+Free memory after allocation: 127950744
+Memory used by allocation: 681640
+Free memory after collecting discarded Integers: 128643696

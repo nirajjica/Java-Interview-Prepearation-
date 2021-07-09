@@ -1,0 +1,40 @@
+Annotation in Spring MVC
+1: @Controller
+2: @RequestMapping
+3: @PathVariable
+4: @RequestParam
+5: @ModelAttribute
+6: @RequestBody
+7: @ResponseBody
+8: @RequestHeader
+9: @ResponseHeader
+10: @Configuration
+11: @Bean
+12: @PreDestroy
+13: @PostConstruct
+14: @ComponentScan
+15: @Component
+16: @PropertySource : ("classpath:mysqldatabase.properties")
+17: @Service
+18: @Repository
+19: @Autowore
+20: @Transactional
+21: @EnableWebSecurity
+22: @Qualifier  :
+23: @RestController
+
+
+@Controller:
+	This annotation is used to make a class as a web controller, which can handle client request and send response back to the client.
+	This is a class level annotation
+
+@RequestMapping:
+	It is a method level annotation that specified over a handle method.
+	It provides the mapping between the request path and the handler method.
+
+@RequestParam:
+	To bind HTTP parameters into method arguments of handler methods.
+	
+Spring Boot Annotation
+1: @SpringBootApplication
+2: @EnableAutoConfiguration

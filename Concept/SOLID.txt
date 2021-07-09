@@ -1,0 +1,43 @@
+SOLID Principle
+
+	-- Designed to reduce the code
+	-- Improve the value, function, and maintainability of software
+	-- SOLID design is an acronym for the following five Principle
+		1: Single Responsibility Principle
+		2: Open-Closed Principle
+		3: Liskov Substitution Principle
+		4: Interface Segregation Principle
+		5: Dependency Inversion Principle
+	-- Looking to save time on developement
+
+1: Single Responsibility Principle
+Example:
+class Employee{
+public Pay calculatePay(){....}
+public void save(){....}
+public String describeEmployee(){...}
+}
+	A class should only have one responsibility.
+	If you have multiple responsibilities combined into one class, it might be difficult to change one part without breaking others
+	Mixing responsibilities also makes the class herder to understand and harder to test, decreasing cohesion.
+	The easiest way to fix this is to split the class into three diffrent classes, with each having only one responsibility: database access,calculateing pay, and reporting , all seperated.
+
+2: Open-Closed Principle
+	The Open-Closed Principle(OCP) states that classes should be open for extension but closed for modification.
+	"Open to extension" means that you should designed your classes so that new functionality can be added as per new requirement. 
+	"Closed for modification" means that once you have developed a class you should never modify it, except to correct bugs
+	To achieved this principle we can use interface or abstract classes rather than concreate classes
+	Example : accept payment or checkout
+
+3: Liskov Substitution Principle(LSP)
+	Apply with inheritance 
+
+4: Interface Segregation Principle(ISP)
+
+	It states the clients should not be forced to depend upon interface member they do not use
+	Example : ATM Application
+5: Dependency Inversion Principle(DIP)
+	It states high-level mdules should not depend upon low-level modules.
+	They should depend on abstraction.
+	Abstractions should not depends on details, details shouls be depends on abstractions.
+	Example Reader Writer program   

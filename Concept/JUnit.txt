@@ -1,0 +1,92 @@
+JUnit
+	It is atesting framework for java programming language.
+	It is important for test driven developement.
+	It is a Regression testing Framework which is used to implements unit testing in java
+	JUnit Framework
+		Test Fixtures
+			setUp()
+			tearDown()
+		Test Suites
+			If you want to execute multiple test cases in a specific order.
+			It can be done by combining all the test cases in a single origin.
+			This origin is call test suits.
+			Annotation
+				@Runwith
+				@SuiteClasses
+		Test Runners
+			The test runner is used for executing the test cases.
+			
+		JUnit classes
+			JUnit classes are used in writing and testing JUnits.
+				Assert
+				TestCase
+				TestResult
+
+
+Example
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+class DemoClass
+{
+P S V M(---)
+{ Result result=JUnitCore.runClasses(JunitClass.class);
+  for(Failure failure:result.getFailures())
+	{ S.O.P(failure.toString());}
+	S.O.P("Result=="+result.wasSuccessful());
+	}
+}
+
+JUnit annotation
+	1: @Test
+	2: @Before
+	3: @After
+	4: @BeforeClass
+	5: @Ignore
+	6: @AfterClass
+
+Assert:
+  Assert is a method used in determining pass or fail status of a test case.
+  In JUnit, all the assertions are in the Assert class.
+  Methods of assert class:
+	assertEquals()	
+	assertTrue()
+	assertFalse()
+	assertNotNull(Object)
+	assetNull()
+	assertSame(Object ,Object)
+	assertNotEquals()
+  
+
+
+public class Main 
+{
+
+  public static void main(String[] args) {
+   int data[]={ 2, 3, 5, 8};
+  int f=0;
+  int  b=1;
+  int len=data.length;
+  if(data[0]==1)
+  f=0;
+   for(int c=2; c<len;c++)
+   {
+   if((data[c-1] +data[c-2])!=data[c])
+   {
+   f=0;
+   continue;
+   }
+   
+    f=1;   
+  }
+  if(f==1)
+  {
+  System.out.println("Array Is fab");
+  }
+  else
+  {
+  System.out.println("Array Is not fab");
+  }
+  
+  }
+}

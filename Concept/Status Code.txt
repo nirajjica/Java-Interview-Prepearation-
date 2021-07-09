@@ -1,0 +1,36 @@
+Status Code
+
+400: Client side error Listing 
+	bad request
+     		Incorrect Sysntax
+
+401: Unauthorized 
+	Check authentication of username and password
+403: Forbidden
+	Check file permission
+404: Not Found
+	URM is mistyped.
+
+500: Server side Error
+	Internal Srver Error
+501: Not Implemented
+	HTTP Method send by client is not supported by server
+502: Bad Gateway
+	Improperly configured proxy server
+ 	Poor IP communication
+
+503: Service Unavailabe
+	Server temporarily closed for maintainance.
+
+504: Gateway Timeout
+
+505 : HTTP Version Not Supported
+
+506: Variant Also Negotilats
+
+507: Insuffiecient Storage
+
+509: Bandwidth Limit Exceeded
+
+510: Not Extended
+

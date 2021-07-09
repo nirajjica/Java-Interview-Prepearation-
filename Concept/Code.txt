@@ -1,0 +1,43 @@
+public String GetLongSec(String str)
+{
+int static data=0;
+for(int a=0;a<str.length();a++)
+	{
+	char ch=str.charAt(a);
+	data=ch;
+	if(
+	}
+}
+
+data[]={5,7,9,3,5,6}
+data[3]=3;
+
+
+public void dispaly()
+{
+
+data[]={5,7,9,3,2,6}
+
+{5,7,9,5,6}
+Scanner sc=new Scanner(System.in);
+System.out.println("Enter index");
+int indx=sc.getInt();
+indx=3;
+//HashSet hs=new HashSet();
+int d=0;
+for(int a=0;a<data.length();a++)
+	{
+	if(indx!=a)
+		{
+		data[d]=data[a];
+		d++;
+		}
+	}
+//System.out.println(hs);
+
+
+
+l.stream().filter(a->a%2==0).collections(l);
+
+
+}

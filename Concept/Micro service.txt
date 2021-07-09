@@ -1,0 +1,88 @@
+Mocroservices
+
+Micrservices also known as Microservices Architecture.
+It is an architectural style that structures an application as a collection of of services that are
+	1: HIghly Maintainable and Testable
+	2: Loosly coupled
+	3: Independaently Deployable
+	4: Organized around business capabilities
+	5: Owned by a small team
+The microservice architecture enabled to rapid, frequent and reliable delevery of large ,complex application.
+
+Characteristics of microservices:
+
+1: Multiple Components
+2: Build for Business
+3: Simple Routing
+4: Decentralized	
+5: Failure Resistant
+6: Evolutionary
+
+Advantes of Microservices
+1: Gives freedom to the developer to independently develop and deploy services
+2: Code for different services can be written in different languages
+3: Easy integration and automatic deployement(using Jenkins, Hudson)
+4: Easy to understand and modify for developer
+5: Developer can make latest technology
+6: The code is organized around business capabilities
+7: When change is required in a certain part of application, only the related service can be modified and deployed- no need to modify and redeploy the entire application
+8: Better faul Isolation
+9: Easy to scale and integrate with third-party services
+10: Deployement Time Reduce
+11: Independent deployement
+
+Draback of Microservices
+1: Due to distributed deployement, testing can become complicated and tedious
+2: When number of services increases, integrationand managing whole product can become complicated
+
+
+Three Commonly used tools for microservices
+	1:Wiremock
+	2:Docker
+	3:Hystrix 
+
+
+Microservices Principles
+	1: Modelled Around Business Domain
+	2: Culture of Automation
+	3: Hide Implementation Deatils
+	4: Highly Observable
+	5: Decentralise All The Things
+	6: Isolate Failure
+	7: Deploy Independently
+
+Designed Pattern use in Mocroservices
+	1: Decomposition
+		Strangler Pattern
+		Decompose by Subdomain
+	2: Integration
+		API Gateway Pattern
+		Aggregator Pattern
+		Client Side UI
+		Composition Pattern
+	3: Database
+		Database Per Service
+		Shared Database per Service
+		CQRS Pattern
+		Saga Pattern
+
+	4: Communication
+		Request/Response
+		Message Pattern
+		Event Driven
+
+	5: Cross-Cutting Concern Patterns
+		Externalized Configuration
+		Service Discovery pattern
+		Circuit Breaker Pattern
+		 
+	6: Observability Pattern
+		Log Aggregation
+		Performance Metrics
+		Didtributed Tracing
+		Health Check
+
+	7: Deployement Pattern
+		Multiple Service Instances per Host
+		Service Instance per Hoost
+		Serverless Deployment

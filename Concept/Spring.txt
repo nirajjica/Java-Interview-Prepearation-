@@ -1,0 +1,6 @@
+Validation in spring Framework
+	Spring Validator can be used both in web and business layers to validate Objects.
+	Validator provides two methods
+		1: supports(Class)
+		2: validate(Object, org.sf.validation.rrors)
+			ValidationUtils.rejectIfEmpty(e,"name","Name is empty") 
